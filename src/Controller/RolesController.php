@@ -12,6 +12,22 @@ use App\Controller\AppController;
  */
 class RolesController extends AppController
 {
+    public function isAuthorized($user)
+	{
+		$action = $this->request->getParam('action');
+                // Admins have all access
+                if($user['role_id'] == 1){
+                    return true;
+                }
+                
+
+		// All other actions require a id.
+		$id = $this->request->getParam('pass.0');
+		if (!$id) {
+			return false;
+		}
+
+	}
     /**
      * Index method
      *

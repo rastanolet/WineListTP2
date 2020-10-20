@@ -39,6 +39,7 @@
             echo $this->Form->control('user_id', ['type' => 'hidden']);
             echo $this->Form->control('color_id', ['options' => $colors]);
             echo $this->Form->control('grapes._ids', ['options' => $grapes]);
+            echo $this->Form->control('files._ids', ['options' => $files]);
             echo $this->Form->control('country_id', ['options' => $countries]);
             echo $this->Form->control('region_id', ['options' => $regions]);
             echo $this->Form->control('vineyard_id', ['options' => $vineyards]);

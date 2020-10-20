@@ -60,6 +60,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 				<li>
 					<?= $this->Html->link('English', ['action' => 'changeLang', 'en_US'], ['escape' => false]);   ?>
 				</li>
+                                <li>
+					<?= $this->Html->link('Espagnol', ['action' => 'changeLang', 'es_MEX'], ['escape' => false]);   ?>
+				</li>
 				<li>
 					<?= $this->Html->link(__('About'), ['controller' => 'Pages', 'action' => 'aPropos']);   ?>
 				</li>

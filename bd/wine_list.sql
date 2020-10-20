@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 19, 2020 at 10:54 PM
+-- Generation Time: Oct 20, 2020 at 03:20 AM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -84,7 +84,9 @@ INSERT INTO `files` (`id`, `name`, `path`, `created`, `modified`, `status`) VALU
 (2, 'alain brumont madiran tour bouscasse 2012.png', 'files/add/', '2020-10-19 18:30:02', '2020-10-19 18:30:02', 1),
 (4, 'adega de penalva dao 2019.png', 'files/add/', '2020-10-19 19:59:44', '2020-10-19 19:59:44', 1),
 (5, 'derriere adega de penalva dao 2019.png', 'files/add/', '2020-10-19 20:33:19', '2020-10-19 20:33:19', 1),
-(6, 'the curator 2018.png', 'files/add/', '2020-10-19 20:34:55', '2020-10-19 20:34:56', 1);
+(6, 'the curator 2018.png', 'files/add/', '2020-10-19 20:34:55', '2020-10-19 20:34:56', 1),
+(7, 'adega de penalva dao 2019.png', 'files/add/', '2020-10-19 23:48:39', '2020-10-19 23:48:39', 1),
+(8, 'the curator 2018.png', 'files/add/', '2020-10-19 23:51:14', '2020-10-19 23:51:14', 1);
 
 -- --------------------------------------------------------
 
@@ -102,7 +104,9 @@ CREATE TABLE `files_wines` (
 --
 
 INSERT INTO `files_wines` (`file_id`, `wine_id`) VALUES
-(2, 3);
+(2, 3),
+(7, 1),
+(8, 2);
 
 -- --------------------------------------------------------
 
@@ -165,7 +169,10 @@ CREATE TABLE `i18n` (
 INSERT INTO `i18n` (`id`, `locale`, `model`, `foreign_key`, `field`, `content`) VALUES
 (1, 'fr_CA', 'Wines', 3, 'description', 'aucune description'),
 (2, 'fr_CA', 'Wines', 1, 'description', 'Ce vin donne l\'impression d\'un bouquet de fleurs.'),
-(3, 'fr_CA', 'Wines', 2, 'description', 'Tout ce qui émerge de cette maison semble faire l\'unanimité.');
+(3, 'fr_CA', 'Wines', 2, 'description', 'Tout ce qui émerge de cette maison semble faire l\'unanimité.'),
+(4, 'es_MEX', 'Wines', 1, 'description', 'Este vino es como un ramo de flores.'),
+(5, 'es_MEX', 'Wines', 2, 'description', 'Todo lo que sale de esta finca es unánimemente dorado.'),
+(6, 'es_MEX', 'Wines', 3, 'description', 'Sin descripción');
 
 -- --------------------------------------------------------
 
@@ -233,9 +240,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role_id`, `username`, `email`, `password`, `uuid`, `confirmed`, `created`, `modified`) VALUES
 (3, 3, 'Félix', 'felixmaille@gmail.com', '$2y$10$5mS53Qlg1918paaNutDIZO5D35JFjHw4HsUUyP7Xm5BXU6WNmDL5i', '', 0, '2020-10-13 20:20:23', '2020-10-13 20:20:23'),
-(4, 1, 'admin', 'admin@admin.com', '$2y$10$iHXhk8h6mD99evpTme8tC.97S./FLOeZbEMJ0tI0ExgEvrHLGT8iC', '', 0, '2020-10-13 20:22:45', '2020-10-13 20:22:45'),
 (5, 1, 'simon', 'simon@admin.com', '$2y$10$LSA7GNN8HaE9h.5CS1C.ne6wyZ/.LAoPNgjXSgq2eu55BCgARZ.zu', '', 0, '2020-10-14 13:36:43', '2020-10-14 13:36:43'),
-(6, 1, 'Simon Nolet', 'simnol123@gmail.com', 'secret', '9f3eae72-b61e-4565-a0d5-145b52286850', 1, '2020-10-19 01:02:40', '2020-10-19 01:03:54');
+(7, 2, 'Joe', 'rastanolet@gmail.com', '$2y$10$dHuCwX//buBuH/0qyY9MZ.ilKMLvx4fGX.xNWNUJQT1xpK9AyoppC', '552c4b35-1774-4602-a976-8bb541d28a17', 1, '2020-10-20 01:15:17', '2020-10-20 01:16:04');
 
 -- --------------------------------------------------------
 
@@ -284,9 +290,9 @@ CREATE TABLE `wines` (
 --
 
 INSERT INTO `wines` (`id`, `user_id`, `color_id`, `country_id`, `region_id`, `vineyard_id`, `year_id`, `name`, `price`, `description`, `rating_AVG`, `created`, `modified`) VALUES
-(1, 6, 1, 1, 1, 1, 3, 'Adega de Penalva Dão', '11.95', 'This wine is like a bouquet of flowers. Beautifully aromatic, the floral notes become more precise in the mouth, and complete with muscat accents.', 5, '2020-10-13 18:04:46', '2020-10-19 22:07:24'),
-(2, 6, 2, 2, 2, 2, 4, 'The Curator', '14.20', 'Everything that comes out of this estate is unanimously golden. Each cuvee features authenticity, nerve and precision. A must for any fan of Rhone Valley blends.', 1, '2020-10-14 09:45:09', '2020-10-19 22:09:58'),
-(3, 6, 2, 3, 3, 3, 10, 'Alain Brumont Madiran Tour Bouscassé', '18.05', 'No description', 5, '2020-10-18 20:56:19', '2020-10-19 22:01:42');
+(1, 7, 1, 1, 1, 1, 3, 'Adega de Penalva Dão', '11.95', 'This wine is like a bouquet of flowers. Beautifully aromatic, the floral notes become more precise in the mouth, and complete with muscat accents.', 5, '2020-10-13 18:04:46', '2020-10-20 02:01:09'),
+(2, 7, 2, 2, 2, 2, 4, 'The Curator', '14.20', 'Everything that comes out of this estate is unanimously golden. Each cuvee features authenticity, nerve and precision. A must for any fan of Rhone Valley blends.', 1, '2020-10-14 09:45:09', '2020-10-20 02:02:54'),
+(3, 7, 2, 3, 3, 3, 10, 'Alain Brumont Madiran Tour Bouscassé', '18.05', 'No description', 5, '2020-10-18 20:56:19', '2020-10-20 02:03:53');
 
 -- --------------------------------------------------------
 
@@ -433,7 +439,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `grapes`
@@ -445,13 +451,13 @@ ALTER TABLE `grapes`
 -- AUTO_INCREMENT for table `grapes_wines`
 --
 ALTER TABLE `grapes_wines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `i18n`
 --
 ALTER TABLE `i18n`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `regions`
@@ -469,7 +475,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `vineyards`

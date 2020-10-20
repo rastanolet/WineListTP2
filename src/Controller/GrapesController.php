@@ -12,6 +12,33 @@ use App\Controller\AppController;
  */
 class GrapesController extends AppController
 {
+    public function isAuthorized($user)
+	{
+		$action = $this->request->getParam('action');
+                // Admins have all access
+                if($user['role_id'] == 1){
+                    return true;
+                }
+                
+                // Visiters have no rights
+                if($user['role_id'] == 3){
+                    return false;
+                }
+                
+                // The add actions are always allowed to logged in users.
+		if (in_array($action, ['add'])) {
+			return true;
+		}
+                
+                
+
+		// All other actions require a id.
+		$id = $this->request->getParam('pass.0');
+		if (!$id) {
+			return false;
+		}
+
+	}
     /**
      * Index method
      *

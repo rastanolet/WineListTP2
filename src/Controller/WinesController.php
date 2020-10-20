@@ -27,8 +27,18 @@ class WinesController extends AppController
     public function isAuthorized($user)
 	{
 		$action = $this->request->getParam('action');
+                // Admins have all access
+                if($user['role_id'] == 1){
+                    return true;
+                }
+                
+                // Visiters have no rights
+                if($user['role_id'] == 3){
+                    return false;
+                }
+                
 		// The add, grapes and files actions are always allowed to logged in users.
-		if (in_array($action, ['add', 'grapes', 'files', 'edit'])) {
+		if (in_array($action, ['add', 'grapes', 'files'])) {
 			return true;
 		}
 
@@ -114,7 +124,7 @@ class WinesController extends AppController
     public function edit($id = null)
     {
         $wine = $this->Wines->get($id, [
-            'contain' => [],
+            'contain' => ['Files'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $wine = $this->Wines->patchEntity($wine, $this->request->getData());
@@ -132,7 +142,7 @@ class WinesController extends AppController
         $regions = $this->Wines->Regions->find('list', ['limit' => 200]);
         $vineyards = $this->Wines->Vineyards->find('list', ['limit' => 200]);
         $years = $this->Wines->Years->find('list', ['limit' => 200]);
-		$files = $this->Wines->Files->find('list', ['limit' => 200]);
+	$files = $this->Wines->Files->find('list', ['limit' => 200]);
         $this->set(compact('wine', 'users', 'colors', 'countries', 'grapes', 'regions', 'vineyards', 'years', 'files'));
     }
 

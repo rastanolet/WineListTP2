@@ -27,10 +27,23 @@ class FilesController extends AppController
     public function isAuthorized($user)
 	{
 		$action = $this->request->getParam('action');
+                
+                // Admins have all access
+                if($user['role_id'] == 1){
+                    return true;
+                }
+                
+                // Visiters have no rights
+                if($user['role_id'] == 3){
+                    return false;
+                }
+                
 		// The add actions are always allowed to logged in users.
 		if (in_array($action, ['add'])) {
 			return true;
 		}
+                
+                
 
 		// All other actions require a id.
 		$id = $this->request->getParam('pass.0');
@@ -81,16 +94,16 @@ class FilesController extends AppController
         $file = $this->Files->newEntity();
         if ($this->request->is('post')) {
             $filerequest = $this->request->getData();
-                debug($filerequest);
-                debug($this->request->getData()['name']);
-                die();
+ //               debug($filerequest);
+ //               debug($this->request->getData()['name']);
+  //              die();
 			
 		if (!empty($filerequest['name']['name'])) {
                 $fileName = $filerequest['name']['name'];
                 $uploadPath = 'files/add/';
                 $uploadFile = $uploadPath . $fileName;
                 if (move_uploaded_file($filerequest['name']['tmp_name'], 'img/' . $uploadFile)) {
-                    $file = $this->Files->newEntity();
+                    $file = $this->Files->patchEntity($file, $this->request->getData());
                     $file->name = $fileName;
                     $file->path = $uploadPath;
                     if ($this->Files->save($file)) {

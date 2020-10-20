@@ -10,72 +10,83 @@
     <h3><?= __('Automne 2020, Collège Montmorency') ?></h3>
     
     <ol>
-    <li>Description sommaires des étapes d'utilisation typiques permettant de vérifier le bon fonctionnement de cette application web:
+
+    <li>Remise du lien GitHub et page À propos:
         <ol>
-            <li><a href="https://cmontmorency.moodle.decclic.qc.ca/mod/page/view.php?id=190010">Utilisation du Framework CakePHP pour concevoir un site web sécurisé </a>;</li>
-            <li><a href="https://cmontmorency.moodle.decclic.qc.ca/mod/page/view.php?id=190015">Construire un prototype d'application web multilingue </a>;</li>
+            <li><a href="https://github.com/rastanolet/WineListTP1.git">Pour le lien GitHub WineList</a></li>
+            <li>.../pages/a_propos</li>
         </ol>
     </li>
-    <li>&nbsp;En vous inspirant de l'exemple vu au cours, ajoutez la fonctionnalité de téléversement d'images à votre application CakePHP:
+    <li>Exigences du TP1:
         <ol>
-            <li>Ajoutez une table qui contiendra les fichiers d'images;</li>
-            <li>Liez cette table à au moins une autre table de votre application avec une relation 1-n ou m-n afin d'en illustrer le contenu;</li>
-            <li>Les images liées doivent être affichées pour les actions de visualisation des enregistrements auxquels elles sont liées, c'est-à-dire "index" et "view".</li>
-        </ol>
-    </li>
-    <li>Permettez l'inscription d'un nouvel utilisateur (de niveau "super-utilisateur") en effectuant le traitement suivant:
-        <ol>
-            <li>Envoyez un courriel comprenant un lien&nbsp;de confirmation&nbsp;à l'adresse courriel donnée lors de l'inscription. Ce lien doit invoquer l'action d'un contrôleur permettant d'enregistrer la confirmation du courriel de l'utilisateur dans la
-                BD.
+            <li>BD avec hasMany (1-n) et belongsToMany (n-n): 
+                    <ol>
+                        <li>Les tables colors, countries, regions, vineyards et years on hasMany(1-n) avec la table wines  </li>
+                        <li>Les tables files et grapes on belongsToMany(n-n) avec la table wines</li>
+                    </ol>
             </li>
-            <ol>
-                <li>Utilisez <a href="http://book.cakephp.org/3.0/fr/core-libraries/text.html#generer-des-uuids">la méthode "uuid" de la classe "text" de CakePHP</a>&nbsp;afin de générer un code de confirmation.</li>
-            </ol>
-            <li>Tant que son courriel n'est pas confirmé, un nouvel utilisateur n'aura pas les mêmes droits qu'il aurait en le confirmant.
+            <li>Cake bake pour 9 tables: 
+                    <ol>
+                        <li>Les cinq tables sont Users, Colors, Countries, Files, Grapes, Regions, Vineyards, Wines et Years</li>
+                    </ol>
+            </li>
+            <li>Actions et infos en menu pour trois types d'utilisateurs: 
+                    <ol>
+                        <li>Les Adimistrateurs ont accès à toutes les fonctionnalité.
+                            <ol>
+                                <li>Exemple d'administrateur: simon@admin.com   mot de passe : secret</li>
+                            </ol>
+                        </li>
+                        <li>Les Vendeurs peuvent ajouter des fichiers, ajouter des raisins, mais n'ont accès qu'aux vins qu'ils ont eux-même créés.
+                            <ol>
+                                <li>Exemple de vendeur: rastanolet@gmail.com   mot de passe : secret</li>
+                            </ol>
+                        </li>
+                        
+                        <li>Les Visiteurs ne peuvent rien modifier.
+                            <ol>
+                                <li>Exemple de vendeur: felixmaille@gmail.com   mot de passe : secret</li>
+                            </ol>
+                        </li>
+                        
+                    </ol>
+            </li>
+            
+            <li>Traduction i18n en français et 3ième langue.
                 <ol>
-                    <li>À chaque fois qu'un utilisateur démarre une session, vous devez vérifier si son courriel est confirmé. S'il ne l'est pas, vous devez afficher un message indiquant clairement les restrictions qui s'appliquent. Vous devez aussi offrir
-                        de renvoyer le courriel de confirmation.</li>
-                    <li>Vous êtes libres de déterminer quelles sont les restrictions applicables aux nouveaux utilisateurs selon votre type d'application.</li>
+                    <li>Une partie de l'interface et du contenu de l'application est offert en francais, en anglais et en espagnol.</li>
+                    <li>Le language peut être changé dans la bare de navigation.</li>
+                </ol>
+            </li>
+            
+            <li>Gestion multilingue du contenu de la BD:
+                <ol>
+                    <li>Quand le language est changer, la table i18n gère de changer la description du vin dans la langue sélectionner</li>
+                </ol>
+            </li>
+            
+            <li>Téléversement et affichage d'images liées:
+                <ol>
+                    <li>Il est possible d'ajouter un fichier (image) et le lier a un vin</li>
+                </ol>
+            </li>
+            
+            <li>Envoi d'un courriel de confirmation avec UUID:
+                <ol>
+                    <li>Quand un nouveau utilisateur est créé, il faut donner un courriel valide à laquelle vous pouvez accèder.</li>
+                    <li>Aller cliquer sur le lien du message reçu.</li>
+                    <li>Votre courriel sera donc confirmer.</li>
                 </ol>
             </li>
         </ol>
     </li>
+    <li><a href="http://127.0.0.1/myadmin/db_designer.php?db=wine_list">Cliquez ici pour observer le diagrame original</a></li>
+    <li>Diagramme de la base de données actuelle utilisée par l'application:
+        <img src="src\Template\Pages\diagrame_bd.JPG" alt="Diagrame BD">
     
-    <li>Vous devez ajouter une page d'informations "à propos" de votre application web. Cette page d'information doit être disponible à partir du menu principal et contenir:
-
-    <ol>
-        <li>Votre nom.</li>
-        <li>Le titre du cours:
-            <ol>
-                <li>420-5b7 MO Applications internet.</li>
-                <li>Automne 2018, Collège Montmorency.</li>
-            </ol>
-        </li>
-        <li>Une description sommaires des étapes d'utilisation typiques permettant de vérifier le bon fonctionnement de votre application web:
-            <ol>
-                <li>Vous devez indiquer clairement comment et avec quels éléments de vos pages interagir:</li>
-                <li>Vous devez aussi indiquer le résultat qui est attendu et éventuellement si cela ne fonctionne pas complètement.</li>
-                <li>Ces étapes doivent permettre de vérifier les exigences du TP1 (Grille d'évaluation).</li>
-            </ol>
-        </li>
-        <li>Le diagramme de la base de données actuelle utilisée par votre application;</li>
-        <li>Un lien vers l'emplacement d'où provient le diagramme original.</li>
-    </ol>
     </li>
+    
 </ol>
     
-    
-    
-    
-    
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+
 </div>
