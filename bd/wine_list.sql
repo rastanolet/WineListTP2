@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 20, 2020 at 03:20 AM
+-- Generation Time: Oct 20, 2020 at 03:25 AM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -291,7 +291,7 @@ CREATE TABLE `wines` (
 
 INSERT INTO `wines` (`id`, `user_id`, `color_id`, `country_id`, `region_id`, `vineyard_id`, `year_id`, `name`, `price`, `description`, `rating_AVG`, `created`, `modified`) VALUES
 (1, 7, 1, 1, 1, 1, 3, 'Adega de Penalva Dão', '11.95', 'This wine is like a bouquet of flowers. Beautifully aromatic, the floral notes become more precise in the mouth, and complete with muscat accents.', 5, '2020-10-13 18:04:46', '2020-10-20 02:01:09'),
-(2, 7, 2, 2, 2, 2, 4, 'The Curator', '14.20', 'Everything that comes out of this estate is unanimously golden. Each cuvee features authenticity, nerve and precision. A must for any fan of Rhone Valley blends.', 1, '2020-10-14 09:45:09', '2020-10-20 02:02:54'),
+(2, 5, 2, 2, 2, 2, 4, 'The Curator', '14.20', 'Everything that comes out of this estate is unanimously golden. Each cuvee features authenticity, nerve and precision. A must for any fan of Rhone Valley blends.', 1, '2020-10-14 09:45:09', '2020-10-20 02:02:54'),
 (3, 7, 2, 3, 3, 3, 10, 'Alain Brumont Madiran Tour Bouscassé', '18.05', 'No description', 5, '2020-10-18 20:56:19', '2020-10-20 02:03:53');
 
 -- --------------------------------------------------------
