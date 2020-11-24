@@ -20,6 +20,15 @@ class RegionsController extends AppController
                     return true;
                 }
                 
+                // Visiters have no rights
+                if($user['role_id'] == 3){
+                    return false;
+                }
+                
+		// The getByCountry action is always allowed to logged in users.
+		if (in_array($action, ['getByCountry'])) {
+			return true;
+		}
 
 		// All other actions require a id.
 		$id = $this->request->getParam('pass.0');
@@ -27,7 +36,22 @@ class RegionsController extends AppController
 			return false;
 		}
 
+		// Check that the wine belongs to the current user.
+		$wine = $this->Wines->get($id);
+
+		return $wine->user_id === $user['id'];
 	}
+        
+    public function getByCountry() {
+        $country_id = $this->request->query('country_id');
+
+        $regions = $this->Regions->find('all', [
+            'conditions' => ['Regions.country_id' => $country_id],
+        ]);
+        $this->set('regions', $regions);
+        $this->set('_serialize', ['regions']);
+    }
+
     /**
      * Index method
      *

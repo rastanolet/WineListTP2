@@ -20,6 +20,15 @@ class VineyardsController extends AppController
                     return true;
                 }
                 
+                // Visiters have no rights
+                if($user['role_id'] == 3){
+                    return false;
+                }
+                
+		// The findVineyards action is always allowed to logged in users.
+		if (in_array($action, ['findVineyards'])) {
+			return true;
+		}
 
 		// All other actions require a id.
 		$id = $this->request->getParam('pass.0');
@@ -27,7 +36,35 @@ class VineyardsController extends AppController
 			return false;
 		}
 
+		// Check that the wine belongs to the current user.
+		$wine = $this->Wines->get($id);
+
+		return $wine->user_id === $user['id'];
 	}
+        
+     /**
+     * findVineyard method
+     * for use with JQuery-UI Autocomplete
+     *
+     * @return JSon query result
+     */
+    public function findVineyards() {
+
+        if ($this->request->is('ajax')) {
+
+            $this->autoRender = false;
+            $name = $this->request->query['term'];
+            $results = $this->Vineyards->find('all', array(
+                'conditions' => array('Vineyards.name LIKE ' => '%' . $name . '%')
+            ));
+
+            $resultArr = array();
+            foreach ($results as $result) {
+                $resultArr[] = array('label' => $result['name'], 'value' => $result['id']);
+            }
+            echo json_encode($resultArr);
+        }
+    }
     /**
      * Index method
      *
@@ -35,7 +72,9 @@ class VineyardsController extends AppController
      */
     public function index()
     {
-        $vineyards = $this->paginate($this->Vineyards);
+        $this->viewBuilder()->setLayout('vineyardsSpa');
+        $vineyards = $this->Vineyards->find('all');
+        //$vineyards = $this->paginate($this->Vineyards);
 
         $this->set(compact('vineyards'));
     }
@@ -47,7 +86,7 @@ class VineyardsController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+/*    public function view($id = null)
     {
         $vineyard = $this->Vineyards->get($id, [
             'contain' => ['Wines'],
@@ -55,13 +94,13 @@ class VineyardsController extends AppController
 
         $this->set('vineyard', $vineyard);
     }
-
+*/
     /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+/*    public function add()
     {
         $vineyard = $this->Vineyards->newEntity();
         if ($this->request->is('post')) {
@@ -75,7 +114,7 @@ class VineyardsController extends AppController
         }
         $this->set(compact('vineyard'));
     }
-
+*/
     /**
      * Edit method
      *
@@ -83,7 +122,7 @@ class VineyardsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+/*    public function edit($id = null)
     {
         $vineyard = $this->Vineyards->get($id, [
             'contain' => [],
@@ -99,7 +138,7 @@ class VineyardsController extends AppController
         }
         $this->set(compact('vineyard'));
     }
-
+*/
     /**
      * Delete method
      *
@@ -107,7 +146,7 @@ class VineyardsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+ /*   public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $vineyard = $this->Vineyards->get($id);
@@ -119,4 +158,5 @@ class VineyardsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+  */
 }

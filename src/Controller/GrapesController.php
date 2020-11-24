@@ -12,6 +12,13 @@ use App\Controller\AppController;
  */
 class GrapesController extends AppController
 {
+    
+    public function initialize()
+	{
+		parent::initialize();
+                $this->viewBuilder()->setLayout('cakephp_default');
+	}
+        
     public function isAuthorized($user)
 	{
 		$action = $this->request->getParam('action');

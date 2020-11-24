@@ -40,6 +40,7 @@ class PagesController extends AppController
      */
     public function display(...$path)
     {
+        $this->viewBuilder()->setLayout('cakephp_default');
         if (!$path) {
             return $this->redirect('/');
         }

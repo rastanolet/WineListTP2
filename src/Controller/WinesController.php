@@ -15,6 +15,7 @@ class WinesController extends AppController
 	public function initialize() {
         parent::initialize();
         $this->Auth->allow(['grapes', 'files']);
+        $this->viewBuilder()->setLayout('cakephp_default');
 		
 		// Include the FlashComponent
         $this->loadComponent('Flash');
@@ -124,7 +125,7 @@ class WinesController extends AppController
     public function edit($id = null)
     {
         $wine = $this->Wines->get($id, [
-            'contain' => ['Files'],
+            'contain' => ['Files', 'Vineyards'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $wine = $this->Wines->patchEntity($wine, $this->request->getData());

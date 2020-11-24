@@ -17,6 +17,43 @@
             <li>.../pages/a_propos</li>
         </ol>
     </li>
+    <li>Exigences du TP2:
+        <ol>
+            <li>Ajout de la fonctionnalité de listes liées: 
+                    <ol>
+                        <li>Les listes liée est fait avec les tables Countries et Regions.   </li>
+                        <li> Pendant l'ajout d'un nouveau vin, seules les régions du pays selectionné seront affichées comme choix. </li>
+                        <li>Cliquez <?= $this->Html->link(__('ici'), ['controller' => 'Wines', 'action' => 'add']) ?> pour l'essayer.</li>
+                    </ol>
+            </li>
+            <li>Ajout de la fonctionnalité d'autocomplétion: 
+                    <ol>
+                        <li>La fonctionnalité d'autocomplétion est ajouté au champ Vineyard pour l'ajout d'un nouveau vin.</li>
+                        <li>Cliquez <?= $this->Html->link(__('ici'), ['controller' => 'Wines', 'action' => 'add']) ?> pour l'essayer.</li>
+                    </ol>
+            </li>
+            <li>Interface monopage: 
+                    <ol>
+                        <li>L'interface monopage accède aux données de la table Vineyards de la BD.</li>
+                        <li>Cliquez <?= $this->Html->link(__('ici'), ['controller' => 'Vineyards', 'action' => 'index']) ?> pour l'essayer.</li>
+                    </ol>
+            </li>
+            <li>Interface avec un préfixe de route "admin" : 
+                    <ol>
+                        <li>L'interface de route admin utilise aussi les données de la table Vineyards. </li>
+                        <li>l'interface admin offre un menu Twitter Bootstrap  et le menu est adaptatif et se transformer lorsque que l'on visualise avec un format de téléphone cellulaire. </li>
+                        <li>Cliquez <?= $this->Html->link(__('ici'), ['prefix' => 'admin', 'controller' => 'Vineyards', 'action' => 'index']) ?> pour l'essayer.</li>
+                    </ol>
+            </li>
+            
+            <li>Affichage sous forme de document PDF:
+                <ol>
+                    <li>Maintenant, tous les vins qui se retrouvent sur la liste peuvent se faire visionner sous forme de document PDF avec toutes leurs informations. </li>
+                    <li>Cliquez <?= $this->Html->link(__('ici'), ['controller' => 'Wines', 'action' => 'index']) ?> pour l'essayer.</li>
+                </ol>
+            </li>
+        </ol>
+    </li>
     <li>Exigences du TP1:
         <ol>
             <li>BD avec hasMany (1-n) et belongsToMany (n-n): 
@@ -82,7 +119,7 @@
     </li>
     <li><a href="http://127.0.0.1/myadmin/db_designer.php?db=wine_list">Cliquez ici pour observer le diagrame original</a></li>
     <li>Diagramme de la base de données actuelle utilisée par l'application:
-        <img src="src\Template\Pages\diagrame_bd.JPG" alt="Diagrame BD">
+        <img src="/WineLists_v0_3_1/app/webroot/img/diagrame_bd.JPG" alt="Diagrame BD">
     
     </li>
     

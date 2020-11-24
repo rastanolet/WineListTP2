@@ -65,6 +65,7 @@
                 <td><?= h($wine->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $wine->id]) ?>
+                    <?= $this->Html->link('(pdf)', ['action' => 'view', $wine->id . '.pdf']) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $wine->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $wine->id], ['confirm' => __('Are you sure you want to delete # {0}?', $wine->id)]) ?>
                 </td>

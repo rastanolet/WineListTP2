@@ -12,6 +12,11 @@ use App\Controller\AppController;
  */
 class ColorsController extends AppController
 {
+    public function initialize()
+	{
+		parent::initialize();
+                $this->viewBuilder()->setLayout('cakephp_default');
+	}
     
     public function isAuthorized($user)
 	{

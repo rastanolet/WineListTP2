@@ -4,6 +4,27 @@
  * @var \App\Model\Entity\Wine $wine
  */
 ?>
+
+<?php
+$urlToVineyardsAutocompletedemoJson = $this->Url->build([
+    "controller" => "Vineyards",
+    "action" => "findVineyards",
+    "_ext" => "json"
+        ]);
+echo $this->Html->scriptBlock('var urlToAutocompleteAction = "' . $urlToVineyardsAutocompletedemoJson . '";', ['block' => true]);
+echo $this->Html->script('Wines/add_edit/vineyardAutocomplete', ['block' => 'scriptBottom']);
+?>
+
+<?php
+$urlToLinkedListFilter = $this->Url->build([
+    "controller" => "Regions",
+    "action" => "getByCountry",
+    "_ext" => "json"
+        ]);
+echo $this->Html->scriptBlock('var urlToLinkedListFilter = "' . $urlToLinkedListFilter . '";', ['block' => true]);
+echo $this->Html->script('Wines/add_edit/add_edit', ['block' => 'scriptBottom']);
+?>
+
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -42,7 +63,14 @@
             echo $this->Form->control('files._ids', ['options' => $files]);
             echo $this->Form->control('country_id', ['options' => $countries]);
             echo $this->Form->control('region_id', ['options' => $regions]);
-            echo $this->Form->control('vineyard_id', ['options' => $vineyards]);
+            echo $this->Form->control('vineyard_id', ['label' => '(vineyard_id)', 'type' => 'hidden']);
+        ?>
+        <div class="input text">
+            <label for="autocomplete"><?= __("Vineyard"). ' (' . __('Autocomplete') . ') ' ?></label>
+            <input id="autocomplete" type="text" value="<?= $wine->vineyard->name; ?>">
+        </div>
+        
+        <?php
             echo $this->Form->control('year_id', ['options' => $years]);
             echo $this->Form->control('name');
             echo $this->Form->control('price');

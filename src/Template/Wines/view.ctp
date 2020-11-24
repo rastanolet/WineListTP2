@@ -33,7 +33,7 @@
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('User') ?></th>
-            <td><?= $wine->has('user') ? $this->Html->link($wine->user->id, ['controller' => 'Users', 'action' => 'view', $wine->user->id]) : '' ?></td>
+            <td><?= $wine->has('user') ? $this->Html->link($wine->user->username, ['controller' => 'Users', 'action' => 'view', $wine->user->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Color') ?></th>
@@ -53,17 +53,17 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Year') ?></th>
-            <td><?= $wine->has('year') ? $this->Html->link($wine->year->id, ['controller' => 'Years', 'action' => 'view', $wine->year->id]) : '' ?></td>
+            <td><?= $wine->has('year') ? $this->Html->link($wine->year->year_number, ['controller' => 'Years', 'action' => 'view', $wine->year->id]) : '' ?></td>
         </tr>
-        <tr>
+    <!--      <tr>
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($wine->name) ?></td>
         </tr>
-        <tr>
+       <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($wine->id) ?></td>
         </tr>
-        <tr>
+       --> <tr>
             <th scope="row"><?= __('Price') ?></th>
             <td><?= $this->Number->format($wine->price) ?></td>
         </tr>

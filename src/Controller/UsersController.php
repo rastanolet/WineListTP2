@@ -17,6 +17,7 @@ class UsersController extends AppController
 	{
 		parent::initialize();
 		$this->Auth->allow(['logout', 'add', 'confirm', 'edit']);
+                $this->viewBuilder()->setLayout('cakephp_default');
 	}
         
         public function isAuthorized($user)

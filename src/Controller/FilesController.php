@@ -16,6 +16,8 @@ class FilesController extends AppController
     public function initialize(){
         parent::initialize();
         
+        $this->viewBuilder()->setLayout('cakephp_default');
+        
         // Include the FlashComponent
         $this->loadComponent('Flash');
         

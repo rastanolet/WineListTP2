@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 20, 2020 at 03:25 AM
+-- Generation Time: Nov 24, 2020 at 05:39 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -59,7 +59,12 @@ CREATE TABLE `countries` (
 INSERT INTO `countries` (`id`, `name`) VALUES
 (1, 'Portugal'),
 (2, 'South Africa'),
-(3, 'France');
+(3, 'France'),
+(4, 'Austalia'),
+(5, 'Spain'),
+(6, 'Italy'),
+(7, 'Argentina'),
+(8, 'Greece');
 
 -- --------------------------------------------------------
 
@@ -86,7 +91,8 @@ INSERT INTO `files` (`id`, `name`, `path`, `created`, `modified`, `status`) VALU
 (5, 'derriere adega de penalva dao 2019.png', 'files/add/', '2020-10-19 20:33:19', '2020-10-19 20:33:19', 1),
 (6, 'the curator 2018.png', 'files/add/', '2020-10-19 20:34:55', '2020-10-19 20:34:56', 1),
 (7, 'adega de penalva dao 2019.png', 'files/add/', '2020-10-19 23:48:39', '2020-10-19 23:48:39', 1),
-(8, 'the curator 2018.png', 'files/add/', '2020-10-19 23:51:14', '2020-10-19 23:51:14', 1);
+(8, 'the curator 2018.png', 'files/add/', '2020-10-19 23:51:14', '2020-10-19 23:51:14', 1),
+(9, 'Domaine_Faiveley_Gevrey_Chambertin_Vieilles_Vignes_2016.png', 'files/add/', '2020-11-24 17:38:32', '2020-11-24 17:38:32', 1);
 
 -- --------------------------------------------------------
 
@@ -106,7 +112,8 @@ CREATE TABLE `files_wines` (
 INSERT INTO `files_wines` (`file_id`, `wine_id`) VALUES
 (2, 3),
 (7, 1),
-(8, 2);
+(8, 2),
+(9, 5);
 
 -- --------------------------------------------------------
 
@@ -133,7 +140,8 @@ INSERT INTO `grapes` (`id`, `name`) VALUES
 (7, 'Syrah'),
 (8, 'Tannat'),
 (9, 'Cabernet sauvignon'),
-(10, 'Cabernet franc');
+(10, 'Cabernet franc'),
+(11, 'Pinot noir');
 
 -- --------------------------------------------------------
 
@@ -146,6 +154,20 @@ CREATE TABLE `grapes_wines` (
   `grape_id` int(11) NOT NULL,
   `wine_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `grapes_wines`
+--
+
+INSERT INTO `grapes_wines` (`id`, `grape_id`, `wine_id`) VALUES
+(21, 4, 2),
+(22, 5, 2),
+(23, 6, 2),
+(24, 7, 2),
+(25, 8, 3),
+(26, 9, 3),
+(27, 10, 3),
+(28, 11, 5);
 
 -- --------------------------------------------------------
 
@@ -193,7 +215,43 @@ CREATE TABLE `regions` (
 INSERT INTO `regions` (`id`, `country_id`, `name`) VALUES
 (1, 1, 'Dâo E Lafôes'),
 (2, 2, 'Western Cape'),
-(3, 3, 'Gascogne');
+(3, 3, 'Gascogne'),
+(4, 3, 'Bourgogne'),
+(5, 3, 'Bordeaux'),
+(6, 3, 'Vallée du Rhône'),
+(7, 3, 'Languedoc-Roussillon'),
+(8, 3, 'Vallée de la Loire'),
+(9, 3, 'Alsace'),
+(10, 3, 'Beaujolais'),
+(11, 3, 'Sud-Ouest'),
+(12, 3, 'Provence'),
+(13, 3, 'Jura'),
+(14, 6, 'Tuscany'),
+(15, 6, 'Piedmont'),
+(16, 6, 'Veneto'),
+(17, 6, 'Sicily'),
+(18, 6, 'Trentino Alto Adige'),
+(19, 6, 'Friuli-Venezia Giulia'),
+(20, 6, 'Emilia-Romagna'),
+(21, 6, 'Abruzzi'),
+(22, 6, 'Puglia'),
+(23, 6, 'The Marches'),
+(24, 5, 'Côte Méditerranéenne'),
+(25, 5, 'Vallée de l\'Ebre'),
+(26, 5, 'Vallée du Duero'),
+(27, 5, 'Meseta'),
+(28, 5, 'L\'Espagne Verte'),
+(29, 5, 'Andaloucia'),
+(30, 5, 'Les Iles'),
+(31, 1, 'Porto'),
+(32, 1, 'Alentejo'),
+(33, 1, 'Vinho Verde'),
+(34, 1, 'Dâo E Lafôes'),
+(35, 1, 'Lisboa'),
+(36, 1, 'Setubal Peninsula'),
+(37, 1, 'Bairrada'),
+(38, 1, 'Tejo'),
+(39, 1, 'Beira Interior');
 
 -- --------------------------------------------------------
 
@@ -261,7 +319,10 @@ CREATE TABLE `vineyards` (
 INSERT INTO `vineyards` (`id`, `name`) VALUES
 (1, 'Adega de Penalva'),
 (2, 'Adi Badenhorst'),
-(3, 'Alain Brumont');
+(3, 'Alain Brumont'),
+(4, 'Adegas Valminor SL'),
+(8, 'Albert Bichot'),
+(9, 'Domaine Faiveley');
 
 -- --------------------------------------------------------
 
@@ -290,9 +351,10 @@ CREATE TABLE `wines` (
 --
 
 INSERT INTO `wines` (`id`, `user_id`, `color_id`, `country_id`, `region_id`, `vineyard_id`, `year_id`, `name`, `price`, `description`, `rating_AVG`, `created`, `modified`) VALUES
-(1, 7, 1, 1, 1, 1, 3, 'Adega de Penalva Dão', '11.95', 'This wine is like a bouquet of flowers. Beautifully aromatic, the floral notes become more precise in the mouth, and complete with muscat accents.', 5, '2020-10-13 18:04:46', '2020-10-20 02:01:09'),
-(2, 5, 2, 2, 2, 2, 4, 'The Curator', '14.20', 'Everything that comes out of this estate is unanimously golden. Each cuvee features authenticity, nerve and precision. A must for any fan of Rhone Valley blends.', 1, '2020-10-14 09:45:09', '2020-10-20 02:02:54'),
-(3, 7, 2, 3, 3, 3, 10, 'Alain Brumont Madiran Tour Bouscassé', '18.05', 'No description', 5, '2020-10-18 20:56:19', '2020-10-20 02:03:53');
+(1, 7, 1, 1, 1, 1, 3, 'Adega de Penalva Dão', '11.95', 'This wine is like a bouquet of flowers. Beautifully aromatic, the floral notes become more precise in the mouth, and complete with muscat accents.', 5, '2020-10-13 18:04:46', '2020-11-23 23:04:14'),
+(2, 5, 2, 2, 2, 2, 4, 'The Curator', '14.20', 'Everything that comes out of this estate is unanimously golden. Each cuvee features authenticity, nerve and precision. A must for any fan of Rhone Valley blends.', 1, '2020-10-14 09:45:09', '2020-11-24 17:23:54'),
+(3, 7, 2, 3, 3, 3, 10, 'Alain Brumont Madiran Tour Bouscassé', '18.05', 'No description', 5, '2020-10-18 20:56:19', '2020-11-24 17:25:49'),
+(5, 5, 2, 3, 4, 9, 6, 'Gevrey-Chambertin Vieilles Vignes', '70.25', 'The wine has a beautiful violet colour with rich, fruity aromas on the nose. The wine is\r\nsmooth, round and fleshy with a very rich structure.\r\n', 3, '2020-11-24 17:36:53', '2020-11-24 17:36:53');
 
 -- --------------------------------------------------------
 
@@ -433,25 +495,25 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `grapes`
 --
 ALTER TABLE `grapes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `grapes_wines`
 --
 ALTER TABLE `grapes_wines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `i18n`
@@ -463,7 +525,7 @@ ALTER TABLE `i18n`
 -- AUTO_INCREMENT for table `regions`
 --
 ALTER TABLE `regions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -481,13 +543,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vineyards`
 --
 ALTER TABLE `vineyards`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `wines`
 --
 ALTER TABLE `wines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `years`
